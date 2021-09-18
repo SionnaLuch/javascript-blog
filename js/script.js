@@ -29,7 +29,8 @@ const titleClickHandler = function(event){
 };
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
-  optTitleListSelector = '.titles';
+  optTitleListSelector = '.titles',
+  optArticleTagsSelector = '.post-tags .list'
 function generateTitleLinks(){
 
 /* remove contents of titleList */
@@ -48,7 +49,7 @@ function generateTitleLinks(){
 
 /* create HTML of the link */
       const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
-      console.log(linkHTML)
+      //console.log(linkHTML)
 /* insert link into titleList */
       html = html + linkHTML;
     }
@@ -60,3 +61,34 @@ function generateTitleLinks(){
     }
 }
 generateTitleLinks();
+function generateTags(){
+  /* find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
+  /* START LOOP: for every article: */
+    for (let article of articles){
+    /* find tags wrapper */
+    const titleList = article.querySelector(optArticleTagsSelector);
+    /* make html variable with empty string */
+    let html = '';
+    /* get tags from data-tags attribute */
+    const articleTags = article.getAttribute('data-tags');
+    //console.log(articleTags);
+    /* split tags into array */
+    const articleTagsArray = articleTags.split(' ');
+    //console.log(articleTagsArray);
+    /* START LOOP: for each tag */
+    for(let tag of articleTagsArray){
+   //console.log(tag)
+      /* generate HTML of the link */
+      const taglinkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+      //console.log(taglinkHTML)
+      /* add generated code to html variable */
+      html = html + taglinkHTML;
+    /* END LOOP: for each tag */
+    }
+    /* insert HTML of all the links into the tags wrapper */
+  articleTags.innerHTML = html;
+  /* END LOOP: for every article: */
+  }
+}
+generateTags();
