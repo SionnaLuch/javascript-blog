@@ -225,8 +225,8 @@ function generateAuthors(){
   /* [NEW] START LOOP: for each tag in allAuthors: */
   for(let author in allAuthors){
      /* [NEW] generate code of a link and add it to allAuthorsHTML */
-     const authorlinkHTML =  '<li><a class="' + calculateTagClass(allAuthors[author], tagsParams) + ' #author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li> ';
-     //console.log('talinkHTML:', taglinkHTML)
+     const authorlinkHTML =  '<li><a href= "#author-' + author + '">' + author + ' (' + allAuthors[author] + ') ' + '</a></li> ';
+     console.log('authorlinkHTML:', authorlinkHTML)
      allAuthorsHTML += authorlinkHTML
      /* [NEW] END LOOP: for each tag in allTags: */
   }
