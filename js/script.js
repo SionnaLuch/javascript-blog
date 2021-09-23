@@ -74,7 +74,7 @@ function generateTitleLinks(customSelectror = ''){
       link.addEventListener('click', titleClickHandler);
     }
 }
-generateTitleLinks();
+
 
 function calculateTagsParams(tags) {
   const params = { max: 0, min: 999999 };
@@ -146,7 +146,7 @@ function generateTags(){
   /* [NEW] START LOOP: for each tag in allTags: */
   for(let tag in allTags){
      /* [NEW] generate code of a link and add it to allTagsHTML */
-     const taglinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + ' ' + '</a></li>'
+     //const taglinkHTML = '<li><a class="' + calculateTagClass(allTags[tag], tagsParams) + '" href="#tag-' + tag + '">' + tag + ' ' + '</a></li>'
      //console.log('talinkHTML:', taglinkHTML)
      //allTagsHTML += taglinkHTML
      allTagsData.tags.push({
@@ -160,7 +160,7 @@ function generateTags(){
   tagList.innerHTML = templates.tagCloudLink(allTagsData)
     //console.log(allTagsData)
 }
-generateTags();
+
 function tagClickHandler(event){
   /* prevent default action for this event */
   event.preventDefault();
@@ -194,6 +194,7 @@ function tagClickHandler(event){
 function addClickListenersToTags(){
   /* find all links to tags */
   const allLinksToTags = document.querySelectorAll('a[href^="#tag-"]')
+  console.log(allLinksToTags)
   /* START LOOP: for each link */
   for (let link of allLinksToTags) {
     /* add tagClickHandler as event listener for that link */
@@ -202,7 +203,6 @@ function addClickListenersToTags(){
   }
 }
 
-addClickListenersToTags();
 function generateAuthors(){
   /* [NEW] create a new variable allAuthors with an empty object */
    let allAuthors = {}
@@ -256,7 +256,7 @@ function generateAuthors(){
   /*[NEW] add HTML from allAuthorsHTML to tagList */
   authorList.innerHTML = templates.authorCloudLink(allAuthorsData);
 }
-generateAuthors();
+
 function authorClickHandler(event){
   /* prevent default action for this event */
   event.preventDefault();
@@ -298,5 +298,8 @@ function addClickListenersToAuthors(){
   /* END LOOP: for each link */
   }
 }
-
+generateTitleLinks();
+generateTags();
+addClickListenersToTags();
+generateAuthors();
 addClickListenersToAuthors();
